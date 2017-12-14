@@ -1,0 +1,23 @@
+{
+  "name": "history",
+  "version": "1.0.0",
+  "description": "The History service as part of the Octopus YouTube Thesis project",
+  "main": "index.js",
+  "dependencies": {
+    "moment": "^2.19.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/6Octopus/history.git"
+  },
+  "author": "James Terry",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/6Octopus/history/issues"
+  },
+  "homepage": "https://github.com/6Octopus/history#readme"
+}
