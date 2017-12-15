@@ -2,12 +2,20 @@
   "name": "history",
   "version": "1.0.0",
   "description": "The History service as part of the Octopus YouTube Thesis project",
-  "main": "index.js",
   "dependencies": {
-    "moment": "^2.19.4"
+    "axios": "^0.17.1",
+    "bluebird": "^3.5.1",
+    "body-parser": "^1.18.2",
+    "chai": "^4.1.2",
+    "express": "^4.16.2",
+    "mocha": "^4.0.1",
+    "moment": "^2.19.4",
+    "mongodb": "^3.0.0-rc0",
+    "mongoose": "^4.13.7"
   },
   "devDependencies": {},
   "scripts": {
+    "start": "nodemon server",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
