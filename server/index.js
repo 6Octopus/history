@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express()
 const bodyParser = require('body-parser');
-const dbHelper = require('../mongod/mongoBeta.js');
+const dbHelper = require('../mongod/mongoCharlie.js');
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -15,8 +15,9 @@ app.get('/', (req, res) => {
 
 app.post('/viewed', (req, res) => {
   console.log(req.body);
-  res.sendStatus(200);
   // { videoID, userID, isAutoplay, progress, totalLength }
+  dbHelper.simpleSession(req.body);
+  res.sendStatus(202);
 })
 
 const port = process.env.PORT || 3000;

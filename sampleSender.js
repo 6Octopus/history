@@ -9,8 +9,9 @@ axios.post('http://localhost:3000/viewed', {
   totalLength: 'PT40S'
 })
 .then(res => {
-  console.log('Success: ' + res.status)
+  console.log(res.status + ' - Accepted');
 })
 .catch(err => {
-  console.log(err)
+  console.log(err);
+  console.log('\nAs you can see, there was an error');
 });

@@ -29,7 +29,7 @@ const simpleSession = function(view) {
   return new Promise(function(resolve) {
     const collection = db.collection('simpleSession');
     collection.insertOne({
-      userID: userID,
+      userID: view.userID,
       sessionUpdateTimestamp: new Date,
       views: [{
         instanceID: view.instanceID,
