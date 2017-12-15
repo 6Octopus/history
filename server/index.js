@@ -10,7 +10,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json()); // honestly I don't think I'll ever use this
 
 app.get('/', (req, res) => {
-  dbHelper.simpler();
   res.send('Hello World!');
 });
 
