@@ -39,5 +39,4 @@ const simpleSession = function(view) {
 }
 
 module.exports.db = db;
-module.exports.simpler = simpler;
 module.exports.simpleSession = simpleSession;

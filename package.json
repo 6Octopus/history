@@ -13,7 +13,9 @@
     "mongodb": "^3.0.0-rc0",
     "mongoose": "^4.13.7"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "random-date-generator": "^1.0.2"
+  },
   "scripts": {
     "start": "nodemon server",
     "test": "echo \"Error: no test specified\" && exit 1"

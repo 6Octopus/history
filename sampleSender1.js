@@ -9,7 +9,7 @@ axios.post('http://localhost:3000/viewed', {
   totalLength: 'PT40S'
 })
 .then(res => {
-  console.log(res.status + ' - Accepted');
+  // console.log(res.status + ' - Accepted');
 })
 .catch(err => {
   console.log(err);

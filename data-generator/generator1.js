@@ -1,39 +1,66 @@
-// var fs = require('fs');
-var moment = require('moment');
+const DateGenerator = require('random-date-generator');
+const moment = require('moment');
 moment().format();
 
 const possible = 'abcdefghijklmnopqrstuvwxyz0123456789_';
 
-var initDataGenerator = () => {
-  var initObject = {};
-  initObject.userID = '';
-  initObject.videoID = '';
-  initObject.isAutoplay = Boolean(Math.floor(Math.random() * 2));
-  initObject._progressSeconds = 0;
-  initObject._totalSeconds = 0;
-  initObject.progress = moment.duration(0, 's').toISOString();
-  initObject.totalLength;
+var viewGenerator = () => {
+  var progressSeconds;
+  var totalSeconds;
 
-  for (var i = 0; i < 24; i++) {
-    initObject.userID += possible.charAt(Math.floor(Math.random() * possible.length));
-  }
+  var viewInstance = {};
+
+  viewInstance.videoID = '';
   for (var i = 0; i < 11; i++) {
-    initObject.videoID += possible.charAt(Math.floor(Math.random() * possible.length));
+    viewInstance.videoID += possible.charAt(Math.floor(Math.random() * possible.length));
   }
+
+  viewInstance.instanceID = '';
+  for (var i = 0; i < 5; i++) {
+    viewInstance.instanceID += possible.charAt(Math.floor(Math.random() * possible.length));
+  }
+
+  viewInstance.isAutoplay = Boolean(Math.floor(Math.random() * 2));
+
+  totalSeconds = 0;
 
   if (Math.floor(Math.random() * 5) === 4) {
-    initObject._totalSeconds = Math.floor(Math.random() * 10800)
+    totalSeconds = Math.floor(Math.random() * 10800)
   } else {
-    initObject._totalSeconds = Math.floor(Math.random() * 240);
-    if (initObject._totalSeconds === 0) {
-      initObject._totalSeconds = 42; // towel it
+    totalSeconds = Math.floor(Math.random() * 240);
+    if (totalSeconds === 0) {
+      totalSeconds = 42; // towel it
     }
   }
 
-  initObject.totalLength = moment.duration(initObject._totalSeconds, 's').toISOString();
+  progressSeconds = Math.floor(Math.random() * totalSeconds);
+  viewInstance.progress = moment.duration(progressSeconds, 's').toISOString();
+  viewInstance.totalLength = moment.duration(totalSeconds, 's').toISOString();
 
-  console.log(initObject);
-  return initObject;
+  return viewInstance;
 }
 
-initDataGenerator();
+var sessionGenerator = () => {
+  var session = {};
+  session.userID = '';
+  session.views = [];
+
+  var startDate = new Date(2017, 1, 1);
+  var endDate = new Date(2017, 12, 15);
+  session.sessionUpdateTimestamp =DateGenerator.getRandomDateInRange(startDate, endDate); // random date in range
+
+  for (var i = 0; i < 24; i++) {
+    session.userID += possible.charAt(Math.floor(Math.random() * possible.length));
+  }
+
+  var numberOfViews = Math.floor(Math.random() * 8) + 1;
+  for (var i = 0; i < numberOfViews; i++) {
+    session.views.push(viewGenerator());
+  }
+
+  return JSON.stringify(session);
+}
+
+console.log(sessionGenerator());
+
+module.exports = sessionGenerator;
