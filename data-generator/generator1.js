@@ -61,6 +61,4 @@ var sessionGenerator = () => {
   return JSON.stringify(session);
 }
 
-console.log(sessionGenerator());
-
 module.exports = sessionGenerator;
