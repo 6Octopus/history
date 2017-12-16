@@ -45,9 +45,9 @@ var sessionGenerator = () => {
   session.userID = '';
   session.views = [];
 
-  var startDate = new Date(2017, 1, 1);
-  var endDate = new Date(2017, 12, 15);
-  session.sessionUpdateTimestamp =DateGenerator.getRandomDateInRange(startDate, endDate); // random date in range
+  var startDate = new Date(2017, 8, 1);
+  var endDate = new Date(2017, 11, 15);
+  session.sessionUpdateTimestamp = DateGenerator.getRandomDateInRange(startDate, endDate); // random date in range
 
   for (var i = 0; i < 24; i++) {
     session.userID += possible.charAt(Math.floor(Math.random() * possible.length));
