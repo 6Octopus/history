@@ -50,30 +50,6 @@ var viewStart = (userID) => {
   return viewInstance;
 }
 
-// var viewCompleter = (userID) => {
-//   var viewProgression = [];
-//   var view = viewStart(userID);
-//   var totalSeconds = moment.duration(view.totalLength).as('seconds');
-//   var progressSeconds = moment.duration(view.progress).as('seconds');
-//
-//   viewProgression.push(JSON.stringify(view));
-//
-//   while (progressSeconds < totalSeconds) {
-//     progressSeconds += 15;
-//
-//     if (progressSeconds >= totalSeconds) {
-//       view.viewTime = moment(view.viewTime).add(totalSeconds - (progressSeconds - 15), 's').toDate();
-//       progressSeconds = totalSeconds;
-//     } else {
-//       view.viewTime = moment(view.viewTime).add(15, 's').toDate();
-//     }
-//     view.progress = moment.duration(progressSeconds, 's').toISOString();
-//     viewProgression.push(JSON.stringify(view));
-//   }
-//   console.log(viewProgression);
-//   return viewProgression;
-// }
-
 var viewCompleter = (view = viewStart()) => {
   var totalSeconds = moment.duration(view.totalLength).as('seconds');
   var progressSeconds = moment.duration(view.progress).as('seconds');

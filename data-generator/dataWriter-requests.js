@@ -1,3 +1,9 @@
+// there is still a problem with this setup
+// but it probably can be ignored
+// requests are ordered, but their times are all random for one day
+// which I guess is fine, but in practice everything will be accessing the most recent
+// still I guess this is okay
+
 var fs = require('fs');
 const generator = require('./generator-requests.js');
 
