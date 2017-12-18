@@ -8,7 +8,7 @@ const url = 'mongodb://localhost:27017'; // for local env
 // const url = 'mongodb://database'; // for docker env
 
 // Database Name
-const dbName = 'mongoDelta';
+const dbName = 'mongoEcho';
 var db;
 
 // Use connect method to connect to the server
