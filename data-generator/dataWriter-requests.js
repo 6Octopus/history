@@ -37,7 +37,7 @@ stream.once('open', (fd) => {
           } else {
             user.currentView = generator.viewStart(user.userID);
           }
-          finishedCounter += 1;;
+          finishedCounter += 1;
         }
       }
     }
