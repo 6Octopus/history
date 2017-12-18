@@ -1,4 +1,4 @@
-var fs = require('fs');
+const fs = require('fs');
 const generator = require('./generator2.js');
 
 var stream = fs.createWriteStream("./gen-files/ten-mil-v2.json", {'flags': 'a', 'encoding': null, 'mode': 0666});

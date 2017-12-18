@@ -4,7 +4,7 @@
 // which I guess is fine, but in practice everything will be accessing the most recent
 // still I guess this is okay
 
-var fs = require('fs');
+const fs = require('fs');
 const generator = require('./generator-requests.js');
 
 console.log('\x1b[0m' + 'start');
