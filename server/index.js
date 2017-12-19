@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express()
 const bodyParser = require('body-parser');
-const dbHelper = require('../mongod/mongoDelta.js');
+const dbHelper = require('../mongod/mongoEcho.js');
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -17,7 +17,7 @@ app.get('/', (req, res) => {
 app.post('/viewed', (req, res) => {
   // console.log(req.body);
   // { videoID, userID, isAutoplay, progress, totalLength }
-  dbHelper.simpleSession(req.body);
+  dbHelper.incomingView(req.body);
   res.sendStatus(202);
 })
 

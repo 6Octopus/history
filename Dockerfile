@@ -19,4 +19,4 @@ EXPOSE 3000
 
 # How do you start your app?
 # CMD [ "npm", "start" ]
-CMD [ "npm", "run", "start-dev" ]
+CMD [ "npm", "run", "dev" ]
