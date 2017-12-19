@@ -21,6 +21,10 @@ app.post('/viewed', (req, res) => {
   res.sendStatus(202);
 })
 
+app.post('/simpleTest', (req, res) => {
+  res.sendStatus(200);
+})
+
 // const port = process.env.PORT || 3000;
 const port = 3000;
 app.listen(port, () => console.log(`Listening on port ${port}!`))

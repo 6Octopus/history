@@ -50,7 +50,7 @@ const incomingView = function(view) {
 
         if (lastSession.views[i].instanceID === newView.instanceID && lastSession.views[i].videoID === newView.videoID && moment.duration(newView.progress) >= moment.duration(lastSession.views.progress)) {
           viewInProgress = true;
-          console.log('Video in progress, updating recorded progress point');
+          // console.log('Video in progress, updating recorded progress point');
           lastSession.views[i].progress = newView.progress;
           lastSession.sessionUpdateTimestamp = new Date(view.viewTime);
           collection.findOneAndUpdate({_id: ObjectId(lastSession._id)},
@@ -61,7 +61,7 @@ const incomingView = function(view) {
                 console.log(err);
               } else {
                 // console.log(doc);
-                console.log('Updated doc, updated view in array')
+                // console.log('Updated doc, updated view in array')
               }
             });
           break;
@@ -69,24 +69,30 @@ const incomingView = function(view) {
       }
 
       if(!viewInProgress) {
-        console.log('Active session, adding to it');
+        // console.log('Active session, adding to it');
         collection.findOneAndUpdate({_id: ObjectId(lastSession._id)}, {$addToSet: {views: newView}, $set: {sessionUpdateTimestamp: new Date(view.viewTime)}}, {sort: {"sessionUpdateTimestamp": -1}, returnNewDocument : true}, function(err, doc) {
           if (err) {
             console.log(err);
           } else {
             // console.log(doc);
-            console.log('Updated doc, added view to array')
+            // console.log('Updated doc, added view to array')
           }
         });
       }
     } else {
       // there is no active session for the user, make a new one
-      console.log('No active session for user');
-      console.log('Make new document/session');
+      // console.log('No active session for user');
       collection.insertOne({
         userID: view.userID,
         sessionUpdateTimestamp: new Date(view.viewTime),
         views: [newView]
+      }, (err, doc) => {
+        if (err) {
+          console.log(err);
+        } else {
+          // console.log(doc);
+          // console.log('New document/session created');
+        }
       });
     }
   });
