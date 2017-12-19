@@ -13,14 +13,17 @@ const axios = require('axios');
 //   }, i * 1);
 // }
 
+
+// objectID: 5a385cab5fffa5fe5a125c5e
+
 var viewData = {
-  userID: "1mwrf2qf28uy6ozmpjwokmfaX",
-  videoID: "6cgubpteh18",
-  "instanceID":"uot_q",
+  userID: "ixe0e6v9vkk8p60lozi8z09j",
+  videoID: "jamesIsGreat",
+  "instanceID":"mattbelesiu",
   "isAutoplay":true,
-  "progress":"P0D",
+  "progress":"PT10S",
   "totalLength":"PT32S",
-  "viewTime":"2017-12-14 23:59:59.737"
+  "viewTime":"2017-12-15 00:10:25.000"
 };
 
 axios.post('http://localhost:3000/viewed', viewData)
