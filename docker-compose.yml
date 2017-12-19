@@ -8,6 +8,6 @@ services:
     ports:
       - "3000:3000"
   database:
-    image: mongo:3.4.10
+    image: mongo:latest
     ports:
       - "27117:27017"

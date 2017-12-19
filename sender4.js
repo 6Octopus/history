@@ -17,13 +17,13 @@ const axios = require('axios');
 // objectID: 5a385cab5fffa5fe5a125c5e
 
 var viewData = {
-  userID: "ixe0e6v9vkk8p60lozi8z09j",
-  videoID: "jamesIsGreat",
-  "instanceID":"mattbelesiu",
+  userID: "jamesterryisgreat",
+  videoID: "tuesday148",
+  "instanceID":"carlos",
   "isAutoplay":true,
-  "progress":"PT10S",
+  "progress":"PT30S",
   "totalLength":"PT32S",
-  "viewTime":"2017-12-15 00:10:25.000"
+  "viewTime":"2017-12-15 01:00:20.000"
 };
 
 axios.post('http://localhost:3000/viewed', viewData)
