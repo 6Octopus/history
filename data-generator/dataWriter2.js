@@ -1,7 +1,7 @@
 const fs = require('fs');
 const generator = require('./generator2.js');
 
-var stream = fs.createWriteStream("./gen-files/ten-mil-v2.json", {'flags': 'a', 'encoding': null, 'mode': 0666});
+var stream = fs.createWriteStream("./gen-files/ten-mil-v3.json", {'flags': 'a', 'encoding': null, 'mode': 0666});
 console.log('\x1b[0m' + 'start');
 stream.once('open', (fd) => {
   // 5 mil total
@@ -13,7 +13,7 @@ stream.once('open', (fd) => {
       stream.write(generator.sessionGenerator(userID) + '\n');
     }
     if (i % 10000 === 0) {
-      console.log(i);
+      console.log((i * 50) + ' - json objects');
     }
   }
   // Important to close the stream when you're ready
