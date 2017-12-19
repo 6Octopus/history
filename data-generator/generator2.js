@@ -2,6 +2,11 @@ const DateGenerator = require('random-date-generator');
 const moment = require('moment');
 moment().format();
 
+var startDate = new Date(2017, 8, 1);
+var endDate = new Date(2017, 11, 15);
+var x = DateGenerator.getRandomDateInRange(startDate, endDate);
+var y = x.toISOString();
+
 const possible = 'abcdefghijklmnopqrstuvwxyz0123456789_';
 
 var viewGenerator = () => {
@@ -47,7 +52,7 @@ var sessionGenerator = (userID) => {
 
   var startDate = new Date(2017, 8, 1);
   var endDate = new Date(2017, 11, 15);
-  session.sessionUpdateTimestamp = DateGenerator.getRandomDateInRange(startDate, endDate); // random date in range
+  session.sessionUpdateTimestamp = {$date: DateGenerator.getRandomDateInRange(startDate, endDate).toISOString()}; // random date in range
 
   var numberOfViews = Math.floor(Math.random() * 8) + 1;
   for (var i = 0; i < numberOfViews; i++) {
@@ -61,7 +66,7 @@ var sessionGeneratorNow = (userID) => {
   var session = {};
   session.userID = userID;
   session.views = [];
-  session.sessionUpdateTimestamp = new Date;
+  session.sessionUpdateTimestamp = {$date: (new Date).toISOString()};
   var numberOfViews = Math.floor(Math.random() * 8) + 1;
   for (var i = 0; i < numberOfViews; i++) {
     session.views.push(viewGenerator());

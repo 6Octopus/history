@@ -14,7 +14,7 @@ for (var i = 0; i < 1000; i++) {
   users.push({userID: generator.userGenerator()})
 };
 
-var stream = fs.createWriteStream("./gen-files/charlie.json", {'flags': 'a', 'encoding': null, 'mode': 0666});
+var stream = fs.createWriteStream("./gen-files/requests-dec-17.json", {'flags': 'a', 'encoding': null, 'mode': 0666});
 stream.once('open', (fd) => {
   var minVideoCount = 100000;
   var finishedCounter = 0;
