@@ -18,5 +18,5 @@ RUN npm install
 EXPOSE 3000
 
 # How do you start your app?
-# CMD [ "npm", "start" ]
-CMD [ "npm", "run", "dev" ]
+CMD [ "npm", "start" ]
+# CMD [ "npm", "run", "dev" ]

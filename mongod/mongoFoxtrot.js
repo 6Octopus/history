@@ -1,3 +1,6 @@
+var enableConsoleLogs = false;
+
+
 var Promise = require("bluebird");
 const MongoClient = require('mongodb').MongoClient;
 var ObjectId = require('mongodb').ObjectID;
@@ -36,6 +39,9 @@ const incomingView = function(view) {
     totalLength: view.totalLength
   }
 
+  // console.log(newView);
+
+
   collection.find({userID: view.userID}, {sort: {"sessionUpdateTimestamp": -1}}).toArray((err, docs) => {
     if (err) {
       console.log(err);
@@ -46,8 +52,6 @@ const incomingView = function(view) {
       var viewInProgress = false;
 
       for (var i = 0; i < lastSession.views.length; i++) {
-        console.log(lastSession.views[i].instanceID + ' - ' + newView.instanceID);
-
         if (lastSession.views[i].instanceID === newView.instanceID && lastSession.views[i].videoID === newView.videoID && moment.duration(newView.progress) >= moment.duration(lastSession.views.progress)) {
           viewInProgress = true;
           // console.log('Video in progress, updating recorded progress point');
@@ -61,7 +65,9 @@ const incomingView = function(view) {
                 console.log(err);
               } else {
                 // console.log(doc);
-                // console.log('Updated doc, updated view in array')
+                if (enableConsoleLogs) {
+                  console.log(`${view.instanceID}: 1 - Updated doc, updated view in array`)
+                }
               }
             });
           break;
@@ -75,7 +81,9 @@ const incomingView = function(view) {
             console.log(err);
           } else {
             // console.log(doc);
-            // console.log('Updated doc, added view to array')
+            if (enableConsoleLogs) {
+              console.log(`${view.instanceID}: 2 - Updated doc, added view to array`)
+            }
           }
         });
       }
@@ -91,11 +99,14 @@ const incomingView = function(view) {
           console.log(err);
         } else {
           // console.log(doc);
-          // console.log('New document/session created');
+          if (enableConsoleLogs) {
+            console.log(`${view.instanceID}: 3 - New document/session created`);
+          }
         }
       });
     }
   });
+
 }
 
 module.exports.db = db;

@@ -1,7 +1,10 @@
 const express = require('express')
+var expressStatsd = require('express-statsd');
 const app = express()
 const bodyParser = require('body-parser');
-const dbHelper = require('../mongod/mongoFoxtrot.js');
+const dbHelper = require('../mongod/mongoGolf.js');
+
+app.use(expressStatsd({ host: 'statsd', port: 8125}));
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -15,8 +18,6 @@ app.get('/', (req, res) => {
 });
 
 app.post('/viewed', (req, res) => {
-  // console.log(req.body);
-  // { videoID, userID, isAutoplay, progress, totalLength }
   dbHelper.incomingView(req.body);
   res.sendStatus(202);
 })

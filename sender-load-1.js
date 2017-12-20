@@ -5,8 +5,9 @@ var requestArray = fs.readFileSync('./data-generator/gen-files/requests-dec-17.j
 var successCount = 0;
 var errorCount = 0;
 
-var numberOfSeconds = 2;
-var reqPerSec = 500;
+// please set these
+var numberOfSeconds = 5;
+var reqPerSec = 100;
 
 var finishedOutput = () => {
   if (successCount + errorCount >=  numberOfSeconds * reqPerSec) {
@@ -17,7 +18,7 @@ var finishedOutput = () => {
 };
 
 var sendRequest = function(viewData) {
-  axios.post('http://localhost:3000/viewed', viewData)
+  axios.post('http://localhost:3000/viewed', JSON.parse(viewData))
   .then(res => {
     // console.log(res.status + ' - Accepted');
     successCount += 1;
@@ -31,12 +32,12 @@ var sendRequest = function(viewData) {
   });
 };
 
-for (var i = 0; i < numberOfSeconds; i++) {
+for (let i = 0; i < numberOfSeconds; i++) {
   setTimeout(() => {
     var currSec = i;
     console.log((successCount + errorCount) + '/' + numberOfSeconds * reqPerSec + ' requests sent');
     for (var j = 0; j < reqPerSec; j++) {
-      sendRequest(requestArray[i * 10 + j]);
+      sendRequest(requestArray[i * reqPerSec + j]);
     }
   }, 1000*i);
 }
