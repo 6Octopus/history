@@ -25,7 +25,9 @@ aws.config.loadFromPath('./aws-config.json');
 // Instantiate SQS.
 var sqs = new aws.SQS();
 
-var queueUrl = "https://sqs.us-west-2.amazonaws.com/737489816178/historyQueue";
+// var queueUrl = "https://sqs.us-west-2.amazonaws.com/737489816178/historyQueue"; // aws
+// var queueUrl = "http://0.0.0.0:9494/test-queue"; // docker
+var queueUrl = "http://localhost:4568/test-queue"; // local
 
 // Creating a queue.
 app.get('/createSQS', function (req, res) {
@@ -84,5 +86,5 @@ app.get('/purge-queue', function(req, res) {
 });
 
 // const port = process.env.PORT || 3000;
-const port = 3007;
+const port = 3000;
 app.listen(port, () => console.log(`Sender is ready and listening on port ${port}!`))

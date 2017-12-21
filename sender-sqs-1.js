@@ -18,7 +18,7 @@ var finishedOutput = () => {
 };
 
 var sendRequest = function(viewData) {
-  axios.post('http://localhost:3007/view-to-a-queue', JSON.parse(viewData))
+  axios.post('http://localhost:3000/view-to-a-queue', JSON.parse(viewData))
   .then(res => {
     console.log(res.status + ' - Accepted');
     successCount += 1;

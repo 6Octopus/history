@@ -1,7 +1,5 @@
 var enableConsoleLogs = true;
 
-
-var Promise = require("bluebird");
 const MongoClient = require('mongodb').MongoClient;
 var ObjectId = require('mongodb').ObjectID;
 var moment = require('moment');

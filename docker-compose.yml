@@ -1,15 +1,20 @@
 version: '3'
 
 services:
-  history:
-    build: .
+  micro-consumer:
+    build: micro-consumer/
     depends_on:
       - "database"
-    ports:
-      - "3000:3000"
     links:
     - "database"
     - "statsd"
+  micro-sender:
+    build: micro-sender/
+    depends_on:
+      - "database"
+      - "micro-consumer"
+    ports:
+      - "3000:3000"
   database:
     image: mongo:latest
     ports:
