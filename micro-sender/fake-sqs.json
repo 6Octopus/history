@@ -1,0 +1,8 @@
+{
+  "use_ssl": false,
+  "sqs_endpoint": "localhost",
+  "sqs_port": 4568,
+  "access_key_id": "access key id",
+  "secret_access_key": "secret access key",
+  "region": "us-west-2"
+}
