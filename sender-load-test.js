@@ -5,8 +5,8 @@ var requestArray = fs.readFileSync('./data-generator/gen-files/requests-dec-17.j
 var successCount = 0;
 var errorCount = 0;
 
-var numberOfSeconds = 2;
-var reqPerSec = 500;
+var numberOfSeconds = 5;
+var reqPerSec = 100;
 
 var finishedOutput = () => {
   if (successCount + errorCount >=  numberOfSeconds * reqPerSec) {
