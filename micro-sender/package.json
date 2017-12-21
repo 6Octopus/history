@@ -1,0 +1,27 @@
+{
+  "name": "micro-sender",
+  "version": "1.0.0",
+  "description": "Receives data via http and sends it to a queue",
+  "main": "sender.js",
+  "scripts": {
+    "start": "node sender.js",
+    "dev": "nodemon sender.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "James Terry",
+  "license": "ISC",
+  "dependencies": {
+    "aws-sdk": "^2.173.0",
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "express-statsd": "^0.3.0"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "mocha": "^4.0.1",
+    "nodemon": "^1.14.1"
+  },
+  "engines": {
+    "node": ">=8.0.0"
+  }
+}

@@ -1,6 +1,9 @@
 const Consumer = require('sqs-consumer');
 const aws = require('aws-sdk');
-const dbHelper = require('../mongod/mongoGolf.js');
+const dbHelper = require('./mongoGolf.js');
+const expressStatsd = require('express-statsd');
+
+app.use(expressStatsd({ host: 'statsd', port: 8125}));
 
 aws.config.loadFromPath('./aws-config.json');
 

@@ -1,10 +1,17 @@
 version: '3'
 
 services:
-  history:
-    build: .
+  micro-consumer:
+    build: micro-consumer/
     depends_on:
       - "database"
+    links:
+    - "database"
+    - "statsd"
+  micro-sender:
+    build: micro-sender/
+    depends_on:
+      - "micro-consumer"
     ports:
       - "3000:3000"
     links:

@@ -84,5 +84,5 @@ app.get('/purge-queue', function(req, res) {
 });
 
 // const port = process.env.PORT || 3000;
-const port = 3007;
+const port = 3000;
 app.listen(port, () => console.log(`Sender is ready and listening on port ${port}!`))

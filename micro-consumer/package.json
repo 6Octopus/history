@@ -1,0 +1,28 @@
+{
+  "name": "micro-consumer",
+  "version": "1.0.0",
+  "description": "Reads from a queue and writes to a db",
+  "main": "consumer.js",
+  "scripts": {
+    "start": "node consumer.js",
+    "dev": "nodemon consumer.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "James Terry",
+  "license": "ISC",
+  "dependencies": {
+    "aws-sdk": "^2.173.0",
+    "express-statsd": "^0.3.0",
+    "moment": "^2.20.1",
+    "mongodb": "^3.0.0-rc0",
+    "sqs-consumer": "^3.8.0"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "mocha": "^4.0.1",
+    "nodemon": "^1.14.1"
+  },
+  "engines": {
+    "node": ">=8.0.0"
+  }
+}
