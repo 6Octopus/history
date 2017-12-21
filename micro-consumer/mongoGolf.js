@@ -6,8 +6,8 @@ var moment = require('moment');
 moment().format();
 
 // Connection URL
-const url = 'mongodb://localhost:27017'; // for local env
-// const url = 'mongodb://database'; // for docker env
+// const url = 'mongodb://localhost:27017'; // for local env
+const url = 'mongodb://database'; // for docker env
 
 // Database Name
 const dbName = 'history';

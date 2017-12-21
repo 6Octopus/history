@@ -11,12 +11,10 @@ services:
   micro-sender:
     build: micro-sender/
     depends_on:
+      - "database"
       - "micro-consumer"
     ports:
       - "3000:3000"
-    links:
-    - "database"
-    - "statsd"
   database:
     image: mongo:latest
     ports:
