@@ -3,18 +3,20 @@
   "version": "1.0.0",
   "description": "The History service as part of the Octopus YouTube Thesis project",
   "dependencies": {
+    "aws-sdk": "^2.173.0",
     "axios": "^0.17.1",
     "bluebird": "^3.5.1",
     "body-parser": "^1.18.2",
     "express": "^4.16.2",
     "express-statsd": "^0.3.0",
     "moment": "^2.19.4",
-    "mongodb": "^3.0.0-rc0"
+    "mongodb": "^3.0.0-rc0",
+    "sqs-consumer": "^3.8.0"
   },
   "devDependencies": {
     "chai": "^4.1.2",
     "mocha": "^4.0.1",
-    "nodemon": "^1.13.3",
+    "nodemon": "^1.14.1",
     "random-date-generator": "^1.0.2"
   },
   "engines": {
