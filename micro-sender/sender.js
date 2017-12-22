@@ -1,7 +1,7 @@
 console.log('SQS Sender is initiating...');
-
 const express = require('express')
 const expressStatsd = require('express-statsd');
+
 const app = express()
 const bodyParser = require('body-parser');
 const aws = require('aws-sdk');
@@ -13,14 +13,20 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 // parse application/json
 app.use(bodyParser.json()); // honestly I don't think I'll ever use this
-
+console.log(app.get('env'));,
 
 
 ///////////////////////////////////////
 // SQS Initiator
 
 // Load your AWS credentials and try to instantiate the object.
-aws.config.loadFromPath('./aws-config.json');
+// aws.config.loadFromPath('./aws-config.json');
+
+if (app.get('env') === 'development') {
+  aws.config.loadFromPath('./aws-config.json');
+} else {
+  aws.config.update({region: 'us-west-2'});
+}
 
 // Instantiate SQS.
 var sqs = new aws.SQS();
