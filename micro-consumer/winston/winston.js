@@ -18,9 +18,6 @@ winston.add(winston.transports.Console, {level: 'silly'});
 winston.add(winston.transports.Elasticsearch, esTransportOpts)
 winston.exitOnError = false;
 
-winston.info('Hello world');
-winston.debug('Debugging info');
-
 module.exports = winston;
 
 /*
