@@ -11,21 +11,24 @@
     "express-statsd": "^0.3.0",
     "moment": "^2.19.4",
     "mongodb": "^3.0.0-rc0",
-    "sqs-consumer": "^3.8.0"
+    "sqs-consumer": "^3.8.0",
+    "winston": "^3.0.0-rc1",
+    "winston-elasticsearch": "^0.5.5"
   },
   "devDependencies": {
     "chai": "^4.1.2",
     "mocha": "^4.0.1",
     "nodemon": "^1.14.1",
-    "random-date-generator": "^1.0.2"
+    "random-date-generator": "^1.0.2",
+    "supertest": "^3.0.0"
   },
   "engines": {
     "node": ">=8.0.0"
   },
   "scripts": {
-    "start": "node --max-old-space-size=8192 server",
+    "start": "node server-unused",
     "dev": "nodemon server",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha micro-sender/*.test.js --recursive --timeout 15000 --exit"
   },
   "repository": {
     "type": "git",

@@ -12,10 +12,13 @@
   "license": "ISC",
   "dependencies": {
     "aws-sdk": "^2.173.0",
+    "elasticsearch": "^14.0.0",
     "express-statsd": "^0.3.0",
     "moment": "^2.20.1",
     "mongodb": "^3.0.0-rc0",
-    "sqs-consumer": "^3.8.0"
+    "sqs-consumer": "^3.8.0",
+    "winston": "^2.4.0",
+    "winston-elasticsearch": "^0.5.5"
   },
   "devDependencies": {
     "chai": "^4.1.2",

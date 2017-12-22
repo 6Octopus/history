@@ -1,8 +1,9 @@
-var enableConsoleLogs = true;
+const enableConsoleLogs = true;
 
 const MongoClient = require('mongodb').MongoClient;
-var ObjectId = require('mongodb').ObjectID;
-var moment = require('moment');
+const ObjectId = require('mongodb').ObjectID;
+const winston = require('./winston/winston.js');
+const moment = require('moment');
 moment().format();
 
 // Connection URL
@@ -63,8 +64,24 @@ const incomingView = function(view) {
               function(err, doc) {
                 if (err) {
                   console.log(err);
+                  winston.warn({
+                    type: 1,
+                    userID: view.userID,
+                    videoID: newView.videoID,
+                    isAutoplay: newView.isAutoplay,
+                    progress: newView.progress,
+                    totalLength: newView.totalLength
+                  });
                 } else {
                   // console.log(doc);
+                  winston.info({
+                    type: 1,
+                    userID: view.userID,
+                    videoID: newView.videoID,
+                    isAutoplay: newView.isAutoplay,
+                    progress: newView.progress,
+                    totalLength: newView.totalLength
+                  });
                   if (enableConsoleLogs) {
                     console.log(`${view.instanceID}: 1 - Updated doc, updated view in array`)
                   }
@@ -79,8 +96,24 @@ const incomingView = function(view) {
           collection.findOneAndUpdate({_id: ObjectId(lastSession._id)}, {$addToSet: {views: newView}, $set: {sessionUpdateTimestamp: new Date(view.viewTime)}}, {sort: {"sessionUpdateTimestamp": -1}, returnNewDocument : true}, function(err, doc) {
             if (err) {
               console.log(err);
+              winston.warn({
+                type: 2,
+                userID: view.userID,
+                videoID: newView.videoID,
+                isAutoplay: newView.isAutoplay,
+                progress: newView.progress,
+                totalLength: newView.totalLength
+              });
             } else {
               // console.log(doc);
+              winston.info({
+                type: 2,
+                userID: view.userID,
+                videoID: newView.videoID,
+                isAutoplay: newView.isAutoplay,
+                progress: newView.progress,
+                totalLength: newView.totalLength
+              });
               if (enableConsoleLogs) {
                 console.log(`${view.instanceID}: 2 - Updated doc, added view to array`)
               }
@@ -97,8 +130,24 @@ const incomingView = function(view) {
         }, (err, doc) => {
           if (err) {
             console.log(err);
+            winston.warn({
+              type: 3,
+              userID: view.userID,
+              videoID: newView.videoID,
+              isAutoplay: newView.isAutoplay,
+              progress: newView.progress,
+              totalLength: newView.totalLength
+            });
           } else {
             // console.log(doc);
+            winston.info({
+              type: 3,
+              userID: view.userID,
+              videoID: newView.videoID,
+              isAutoplay: newView.isAutoplay,
+              progress: newView.progress,
+              totalLength: newView.totalLength
+            });
             if (enableConsoleLogs) {
               console.log(`${view.instanceID}: 3 - New document/session created`);
             }
