@@ -13,7 +13,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 // parse application/json
 app.use(bodyParser.json()); // honestly I don't think I'll ever use this
-console.log(app.get('env'));,
+console.log(app.get('env'));
 
 
 ///////////////////////////////////////
