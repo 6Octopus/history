@@ -23,7 +23,12 @@ console.log(app.get('env'));
 // aws.config.loadFromPath('./aws-config.json');
 console.log(process.env.AWS_ACCESS_KEY_ID);
 if (app.get('env') === 'production' || process.env.AWS_ACCESS_KEY_ID !== undefined) {
-  aws.config.update({region: 'us-west-2'});
+
+  aws.config.update({
+    region: 'us-west-2',
+    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+    secretAccessKey: process.env.secretAccessKey
+  });
 } else {
   aws.config.loadFromPath('./aws-config.json');
 }
