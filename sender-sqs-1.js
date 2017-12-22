@@ -7,7 +7,7 @@ var errorCount = 0;
 
 // please set these
 var numberOfSeconds = 5;
-var reqPerSec = 100;
+var reqPerSec = 10;
 
 var finishedOutput = () => {
   if (successCount + errorCount >=  numberOfSeconds * reqPerSec) {
@@ -20,7 +20,7 @@ var finishedOutput = () => {
 var sendRequest = function(viewData) {
   axios.post('http://localhost:3000/view-to-a-queue', JSON.parse(viewData))
   .then(res => {
-    console.log(res.status + ' - Accepted');
+    // console.log(res.status + ' - Accepted');
     successCount += 1;
     finishedOutput();
   })
