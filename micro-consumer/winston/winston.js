@@ -14,7 +14,7 @@ if (process.env.NODE_ENV !== 'production') {
   winston.add(winston.transports.File, { filename: './winston/systemLogs.log' });
 }
 winston.remove(winston.transports.Console);
-winston.add(winston.transports.Console, {level: 'silly'});
+winston.add(winston.transports.Console, {level: 'warn'});
 winston.add(winston.transports.Elasticsearch, esTransportOpts)
 winston.exitOnError = false;
 

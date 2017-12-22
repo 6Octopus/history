@@ -6,8 +6,8 @@ var successCount = 0;
 var errorCount = 0;
 
 // please set these
-var numberOfSeconds = 5;
-var reqPerSec = 10;
+var numberOfSeconds = process.argv[2] || 5;
+var reqPerSec = process.argv[3] || 10;
 
 var finishedOutput = () => {
   if (successCount + errorCount >=  numberOfSeconds * reqPerSec) {
@@ -26,7 +26,7 @@ var sendRequest = function(viewData) {
   })
   .catch(err => {
     errorCount += 1;
-    // console.log(err);
+    console.log(err);
     // console.log('\nAs you can see, there was an error');
     finishedOutput();
   });

@@ -1,4 +1,4 @@
-const enableConsoleLogs = true;
+const enableConsoleLogs = false;
 
 const MongoClient = require('mongodb').MongoClient;
 const ObjectId = require('mongodb').ObjectID;

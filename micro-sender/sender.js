@@ -13,15 +13,12 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 // parse application/json
 app.use(bodyParser.json()); // honestly I don't think I'll ever use this
-console.log(app.get('env'));
 
 
 ///////////////////////////////////////
 // SQS Initiator
 
 // Load your AWS credentials and try to instantiate the object.
-// aws.config.loadFromPath('./aws-config.json');
-console.log(process.env.AWS_ACCESS_KEY_ID);
 if (app.get('env') === 'production' || process.env.AWS_ACCESS_KEY_ID !== undefined) {
 
   aws.config.update({
@@ -64,22 +61,27 @@ app.get('/', (req, res) => {
   res.send('You\'ve reached the sender, please leave a message after the tone');
 });
 
+var holdTenArray = [];
+
 app.post('/view-to-a-queue', (req, res) => {
-  console.log(req.body);
+  // console.log(req.body);
 
-  var params = {
-    MessageBody: JSON.stringify(req.body),
-    QueueUrl: queueUrl,
-    DelaySeconds: 0
-  };
+  holdTenArray.push(req.body);
 
-  sqs.sendMessage(params, function(err, data) {
-    if (err) {
-      res.send(err);
-    } else {
-      res.send(data);
-    }
-  });
+  if (holdTenArray.length >= 100) {
+    var params = {
+      MessageBody: JSON.stringify(holdTenArray),
+      QueueUrl: queueUrl,
+      DelaySeconds: 0
+    };
+    holdTenArray = [];
+    sqs.sendMessage(params, function(err, data) {
+      if (err) {
+        console.log(err)
+      }
+    });
+  }
+  res.sendStatus(200);
 })
 
 app.get('/purge-queue', function(req, res) {
