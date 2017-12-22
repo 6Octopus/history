@@ -22,11 +22,11 @@ console.log(app.get('env'));
 // Load your AWS credentials and try to instantiate the object.
 // aws.config.loadFromPath('./aws-config.json');
 
-if (app.get('env') === 'production' || process.env.AWS_ACCESS_KEY_ID !== undefined)
+if (app.get('env') === 'production' || process.env.AWS_ACCESS_KEY_ID !== undefined) {
   aws.config.update({region: 'us-west-2'});
-} else if (app.get('env') === 'development') {
-  aws.config.loadFromPath('./aws-config.json');
 } else {
+  aws.config.loadFromPath('./aws-config.json');
+}
 
 // Instantiate SQS.
 var sqs = new aws.SQS();
