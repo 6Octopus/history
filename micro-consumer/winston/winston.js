@@ -1,6 +1,6 @@
-var winston = require('winston');
-var Elasticsearch = require('winston-elasticsearch');
-var eSearch=require('elasticsearch');
+const winston = require('winston');
+const Elasticsearch = require('winston-elasticsearch');
+const eSearch=require('elasticsearch');
 // https://www.compose.com/articles/getting-started-with-elasticsearch-and-node/
 var client = new eSearch.Client( {
   hosts: 'localhost:9200',

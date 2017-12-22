@@ -26,8 +26,6 @@
     "node": ">=8.0.0"
   },
   "scripts": {
-    "start": "node server-unused",
-    "dev": "nodemon server",
     "test": "mocha micro-sender/*.test.js --recursive --timeout 15000 --exit"
   },
   "repository": {
