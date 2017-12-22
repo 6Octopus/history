@@ -26,7 +26,7 @@
     "node": ">=8.0.0"
   },
   "scripts": {
-    "test": "mocha micro-sender/*.test.js --recursive --timeout 15000 --exit"
+    "test": "mocha micro-sender/*.test.js --recursive --timeout 30000 --exit"
   },
   "repository": {
     "type": "git",
