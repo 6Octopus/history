@@ -15,9 +15,6 @@ aws.config.loadFromPath('./aws-config.json');
 // run 1: fake_sqs
 // run 2: curl http://localhost:4568 -d "Action=CreateQueue&QueueName=history-queue&AWSAccessKeyId=access%20key%20id"
 
-var total = 0;
-console.log('Total:', total);
-
 const app = Consumer.create({
   // queueUrl: 'https://sqs.us-west-2.amazonaws.com/737489816178/historyQueue', // aws
   // queueUrl: 'http://0.0.0.0:9494/test-queue', // docker
@@ -27,22 +24,31 @@ const app = Consumer.create({
     // console.log(typeof JSON.parse(message.Body))
     var viewArray = JSON.parse(message.Body);
     for (var i = 0; i < viewArray.length; i++) {
-      total += 1;
-      console.log('Total:', total);
       dbHelper.incomingView(viewArray[i]);
     }
     done();
   },
   sqs: new aws.SQS(),
   batchSize: 10
-  }
-);
-
-app.on('error', (err) => {
-  // console.log(err.message);
 });
 
-app.start();
-console.log('SQS Consumer is running');
+const cluster = require('cluster');
+const numCPUs = require('os').cpus().length;
+
+if (cluster.isMaster) {
+    for (var i = 0; i < numCPUs; i++) {
+        cluster.fork();
+    }
+} else {
+
+
+  app.on('error', (err) => {
+    // console.log(err.message);
+  });
+
+  app.start();
+  console.log('SQS Consumer is running');
+}
+
 
 module.exports = app;

@@ -12,6 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "aws-sdk": "^2.173.0",
+    "cluster": "^0.7.7",
     "elasticsearch": "^14.0.0",
     "express-statsd": "^0.3.0",
     "moment": "^2.20.1",

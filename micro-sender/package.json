@@ -13,6 +13,7 @@
   "dependencies": {
     "aws-sdk": "^2.173.0",
     "body-parser": "^1.18.2",
+    "cluster": "^0.7.7",
     "express": "^4.16.2",
     "express-statsd": "^0.3.0"
   },
