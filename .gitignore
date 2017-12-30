@@ -39,3 +39,4 @@ bower_components/
 data-generator/gen-files
 
 aws-config.json
+elastic-config.json
