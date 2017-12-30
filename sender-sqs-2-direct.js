@@ -22,7 +22,7 @@ var queueUrl = "http://localhost:4568/history-queue"; // local
 
 const fs = require('fs');
 
-var requestArray = fs.readFileSync('./data-generator/gen-files/requests-dec-17.json', 'utf8').split('\n');
+var requestArray = fs.readFileSync('./data-generator/gen-files/requests-dec-30.json', 'utf8').split('\n');
 var successCount = 0;
 var errorCount = 0;
 

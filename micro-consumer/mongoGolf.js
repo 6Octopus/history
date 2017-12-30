@@ -1,4 +1,4 @@
-const enableConsoleLogs = true;
+const enableSuccessConsoleLogs = false;
 
 const MongoClient = require('mongodb').MongoClient;
 const ObjectId = require('mongodb').ObjectID;
@@ -84,7 +84,7 @@ const incomingView = function(view) {
                     totalLength: newView.totalLength,
                     occurenceTime: new Date(view.viewTime)
                   });
-                  if (enableConsoleLogs) {
+                  if (enableSuccessConsoleLogs) {
                     console.log(`${view.instanceID}: 1 - Updated doc, updated view in array`)
                   }
                 }
@@ -118,7 +118,7 @@ const incomingView = function(view) {
                 totalLength: newView.totalLength,
                 occurenceTime: new Date(view.viewTime)
               });
-              if (enableConsoleLogs) {
+              if (enableSuccessConsoleLogs) {
                 console.log(`${view.instanceID}: 2 - Updated doc, added view to array`)
               }
             }
@@ -154,7 +154,7 @@ const incomingView = function(view) {
               totalLength: newView.totalLength,
               occurenceTime: new Date(view.viewTime)
             });
-            if (enableConsoleLogs) {
+            if (enableSuccessConsoleLogs) {
               console.log(`${view.instanceID}: 3 - New document/session created`);
             }
           }
