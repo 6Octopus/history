@@ -45,7 +45,7 @@ var viewStart = (userID) => {
   viewInstance.progress = moment.duration(progressSeconds, 's').toISOString();
   viewInstance.totalLength = moment.duration(totalSeconds, 's').toISOString();
 
-  viewInstance.viewTime = new Date(2017, 11, 16, flrRand(24), flrRand(60), flrRand(60));
+  viewInstance.viewTime = new Date(2017, 11, 29, flrRand(24), flrRand(60), flrRand(60));
 
   return viewInstance;
 }

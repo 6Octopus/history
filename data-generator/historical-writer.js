@@ -1,5 +1,5 @@
 const fs = require('fs');
-const generator = require('./generator2.js');
+const generator = require('./historical-generator.js');
 
 var stream = fs.createWriteStream("./gen-files/ten-mil-v3.json", {'flags': 'a', 'encoding': null, 'mode': 0666});
 console.log('\x1b[0m' + 'start');

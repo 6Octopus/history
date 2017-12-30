@@ -5,18 +5,18 @@
 // still I guess this is okay
 
 const fs = require('fs');
-const generator = require('./generator-requests.js');
+const generator = require('./requests-generator.js');
 
 console.log('\x1b[0m' + 'start');
 
 var users = [];
-for (var i = 0; i < 1000; i++) {
+for (var i = 0; i < 5000; i++) {
   users.push({userID: generator.userGenerator()})
 };
 
-var stream = fs.createWriteStream("./gen-files/requests-dec-17.json", {'flags': 'a', 'encoding': null, 'mode': 0666});
+var stream = fs.createWriteStream("./gen-files/requests-dec-30.json", {'flags': 'a', 'encoding': null, 'mode': 0666});
 stream.once('open', (fd) => {
-  var minVideoCount = 100000;
+  var minVideoCount = 1000000;
   var finishedCounter = 0;
 
   users.forEach(user => {
@@ -41,7 +41,9 @@ stream.once('open', (fd) => {
         }
       }
     }
-    console.log(finishedCounter);
+    if (finishedCounter % 10000) {
+      console.log(finishedCounter);
+    }
   }
   // Important to close the stream when you're ready
   stream.end();
