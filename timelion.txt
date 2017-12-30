@@ -1,0 +1,7 @@
+The following are timelion es queries that I've saved here in case they get lost.
+
+.es(severity:info).label('Success - Info'), .es(severity:warn).label('Failure - Warn').title('DB Insert Status (Real Time)')
+
+.es(fields.type:1).label('1: Updated View in Array'), .es(fields.type:2).label('2: Added View to Array'), .es(fields.type:3).label('3: New Sessions').title('Insert Type (Real Time)')
+
+.es(fields.isAutoplay:true, timefield='fields.occurenceTime').label('Autoplay Enabled'), .es(fields.isAutoplay:false, timefield='fields.occurenceTime').label('Autoplay Disabled').title('Autoplay Status (Fake Historical)')

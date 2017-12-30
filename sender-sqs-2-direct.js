@@ -16,7 +16,7 @@ const aws = require('aws-sdk');
 var sqs = new aws.SQS();
 
 // var queueUrl = "https://sqs.us-west-2.amazonaws.com/737489816178/historyQueue"; // aws
-// var queueUrl = "http://0.0.0.0:9494/test-queue"; // docker
+// var queueUrl = "http://0.0.0.0:9494/history-queue"; // docker
 var queueUrl = "http://localhost:4568/history-queue"; // local
 
 

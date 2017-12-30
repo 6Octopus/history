@@ -5,29 +5,17 @@ services:
     build: micro-consumer/
     depends_on:
       - "database"
+      - "sqs"
     links:
     - "database"
-    - "statsd"
-  micro-sender:
-    build: micro-sender/
-    depends_on:
-      - "database"
-      - "micro-consumer"
-    ports:
-      - "3000:3000"
+    - "sqs"
   database:
     image: mongo:latest
     ports:
       - "27017:27017"
-  statsd:
-    image: hopsoft/graphite-statsd
+  sqs:
+    image: feathj/fake-sqs
     ports:
-      - "3002:80"
-      - "2003:2003"
-      - "8125:8125/udp"
-  grafana:
-    image: grafana/grafana
-    links:
-      - statsd
-    ports:
-      - "3001:3000"
+      - "9494:9494"
+    environment:
+      VIRTUAL_HOST: "sqs.docker"

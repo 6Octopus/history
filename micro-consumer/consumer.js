@@ -14,19 +14,19 @@ aws.config.loadFromPath('./aws-config.json');
 // https://github.com/feathj/docker-fake-sqs
 // run 1: fake_sqs
 // run 2: curl http://localhost:4568 -d "Action=CreateQueue&QueueName=history-queue&AWSAccessKeyId=access%20key%20id"
-// var count = 0;
+
 const app = Consumer.create({
   // queueUrl: 'https://sqs.us-west-2.amazonaws.com/737489816178/historyQueue', // aws
   // queueUrl: 'http://0.0.0.0:9494/test-queue', // docker
   queueUrl: 'http://localhost:4568/history-queue', // localhost
   handleMessage: (message, done) => {
     // console.log(JSON.parse(message.Body))
-    // console.log(typeof JSON.parse(message.Body))
+
     var viewArray = JSON.parse(message.Body);
     for (var i = 0; i < viewArray.length; i++) {
-      // count++;
-      // console.log(count);
-      dbHelper.incomingView(viewArray[i]);
+      // console.log(typeof JSON.parse(viewArray[i]));
+      // console.log(JSON.parse(viewArray[i]));
+      dbHelper.incomingView(JSON.parse(viewArray[i]));
     }
     done();
   },

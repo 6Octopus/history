@@ -1,0 +1,33 @@
+version: '3'
+
+services:
+  micro-consumer:
+    build: micro-consumer/
+    depends_on:
+      - "database"
+    links:
+    - "database"
+    - "statsd"
+  micro-sender:
+    build: micro-sender/
+    depends_on:
+      - "database"
+      - "micro-consumer"
+    ports:
+      - "3000:3000"
+  database:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+  statsd:
+    image: hopsoft/graphite-statsd
+    ports:
+      - "3002:80"
+      - "2003:2003"
+      - "8125:8125/udp"
+  grafana:
+    image: grafana/grafana
+    links:
+      - statsd
+    ports:
+      - "3001:3000"
