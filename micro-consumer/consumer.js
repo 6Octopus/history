@@ -16,9 +16,9 @@ aws.config.loadFromPath('./aws-config.json');
 // run 2: curl http://localhost:4568 -d "Action=CreateQueue&QueueName=history-queue&AWSAccessKeyId=access%20key%20id"
 
 const app = Consumer.create({
-  // queueUrl: 'https://sqs.us-west-2.amazonaws.com/737489816178/historyQueue', // aws
-  // queueUrl: 'http://0.0.0.0:9494/test-queue', // docker
   queueUrl: 'http://localhost:4568/history-queue', // localhost
+  // queueUrl: 'http://0.0.0.0:9494/history-queue', // docker
+  // queueUrl: 'https://sqs.us-west-2.amazonaws.com/737489816178/historyQueue', // aws
   handleMessage: (message, done) => {
     // console.log(JSON.parse(message.Body))
 

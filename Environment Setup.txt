@@ -1,0 +1,8 @@
+Check the following files
+- micro-consumer/consumer.js - queue url
+- micro-consumer/mongoGolf.js - database url
+- sender-sqs-direct.js - SQS url
+
+Be sure to:
+- Create and start an SQS if not on Amazon
+- Start Elastic and Kibana if not using Elastic Cloud
