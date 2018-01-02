@@ -5,17 +5,16 @@ services:
     build: micro-consumer/
     depends_on:
       - "database"
-      - "sqs"
     links:
-    - "database"
-    - "sqs"
+      - "database"
+  micro-updator:
+    build: micro-updator/
+    depends_on:
+      - "database"
+      - "micro-consumer"
+    links:
+      - "database"
   database:
     image: mongo:latest
     ports:
       - "27017:27017"
-  sqs:
-    image: feathj/fake-sqs
-    ports:
-      - "9494:9494"
-    environment:
-      VIRTUAL_HOST: "sqs.docker"

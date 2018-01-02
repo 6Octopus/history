@@ -15,9 +15,9 @@ const aws = require('aws-sdk');
 // Instantiate SQS.
 var sqs = new aws.SQS();
 
-var queueUrl = "http://localhost:4568/history-queue"; // local
-// var queueUrl = "http://0.0.0.0:9494/history-queue"; // docker
-// var queueUrl = "https://sqs.us-west-2.amazonaws.com/737489816178/historyQueue"; // aws
+// var queueUrl = "http://localhost:4568/history-queue"; // localhost
+// var queueUrl = "http://localhost:9494/history-queue"; // docker
+var queueUrl = "https://sqs.us-west-2.amazonaws.com/737489816178/historyQueue"; // aws
 
 
 const fs = require('fs');
@@ -43,7 +43,7 @@ var viewQueue = [];
 var sendViews = function(viewData) {
   successCount += 1;
   viewQueue.push(viewData);
-  if (viewQueue.length >= 500) {
+  if (viewQueue.length >= 500 || viewQueue.length >= reqPerSec) {
     var params = {
       MessageBody: JSON.stringify(viewQueue),
       QueueUrl: queueUrl,

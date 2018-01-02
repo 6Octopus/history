@@ -1,4 +1,4 @@
-const enableSuccessConsoleLogs = false;
+const enableSuccessConsoleLogs = true;
 
 const MongoClient = require('mongodb').MongoClient;
 const ObjectId = require('mongodb').ObjectID;
@@ -7,8 +7,8 @@ const moment = require('moment');
 moment().format();
 
 // Connection URL
-const url = 'mongodb://localhost:27017'; // for local env
-// const url = 'mongodb://database'; // for docker env
+// const url = 'mongodb://localhost:27017'; // for local env
+const url = 'mongodb://database'; // for docker env
 
 // Database Name
 const dbName = 'history';
