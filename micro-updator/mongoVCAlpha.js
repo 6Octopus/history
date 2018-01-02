@@ -1,4 +1,4 @@
-const enableSuccessConsoleLogs = true;
+const enableSuccessConsoleLogs = false;
 
 const MongoClient = require('mongodb').MongoClient;
 const ObjectId = require('mongodb').ObjectID;
@@ -25,10 +25,8 @@ var startConnection = function (callback) {
 
 // END SETUP
 
-var staleScan = function() {
+var staleScan = function(callback) {
   console.log('Stale Scan between')
-  console.log(moment().subtract(61, 'm').toString());
-  console.log(moment().subtract(60, 'm').toString());
 
   // find every stale session using findAll where sessionUpdateTimestamp is an hour old
   // return them as an array I guess
@@ -43,16 +41,19 @@ var staleScan = function() {
     if (err) {
       console.log(err);
     } else {
-      // console.log(docs);
-      console.log('Docs length: ' + docs.length);
-      console.log(viewFormatter(docs));
+      if (enableSuccessConsoleLogs) {
+        console.log('Docs length: ' + docs.length);
+      }
+      console.log('OKAY NOW YOU NEED TO SEND THESE VIEWS SOMEWHERE');
+      callback(viewFormatter(docs));
     }
-  })
+  });
 };
 
 // I will need to flatten a multidimmensional array to a single depth array
 var viewFormatter = function(sessionsArray) {
-  var formattedViewCount = {}
+  var formattedViewArray = [];
+  var viewCountObj = {};
 
   var realViews = [].concat(...sessionsArray.map(session => {
     return session.views.filter(view => {
@@ -60,19 +61,30 @@ var viewFormatter = function(sessionsArray) {
       return (moment.duration(view.progress).asSeconds() / moment.duration(view.totalLength).asSeconds()) >= .8;
     });
   }));
-  console.log('Real Views:', realViews.length);
 
   for (var i = 0; i < realViews.length; i++) {
-    if (!formattedViewCount[realViews[i].videoID]) {
-      formattedViewCount[realViews[i].videoID] = 1;
+    if (!viewCountObj[realViews[i].videoID]) {
+      viewCountObj[realViews[i].videoID] = 1;
     } else {
-      formattedViewCount[realViews[i].videoID] += 1;
+      viewCountObj[realViews[i].videoID] += 1;
     }
   };
 
-  return formattedViewCount;
+  for (var view in viewCountObj) {
+    formattedViewArray.push({
+      videoID: view,
+      additionalViews: JSON.stringify(viewCountObj[view])
+    });
+  }
+
+  if (enableSuccessConsoleLogs) {
+    console.log(formattedViewArray);
+    console.log('View Array Length:', formattedViewArray.length);
+  }
+
+  return formattedViewArray;
  };
 
 module.exports.startConnection = startConnection;
 module.exports.staleScan = staleScan;
-module.exports.viewFormatter = viewFormatter;
+// module.exports.viewFormatter = viewFormatter;

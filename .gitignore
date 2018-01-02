@@ -40,3 +40,4 @@ data-generator/gen-files
 
 aws-config.json
 elastic-config.json
+video-config.js
