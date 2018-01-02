@@ -30,7 +30,7 @@ dbHelper.startConnection(() => {
           if (err) {
             console.log(err);
           } else {
-            // console.log(data);
+            console.log(data);
             console.log('Views Sent to Video Service')
           }
         });

@@ -44,7 +44,6 @@ var staleScan = function(callback) {
       if (enableSuccessConsoleLogs) {
         console.log('Docs length: ' + docs.length);
       }
-      console.log('OKAY NOW YOU NEED TO SEND THESE VIEWS SOMEWHERE');
       callback(viewFormatter(docs));
     }
   });
