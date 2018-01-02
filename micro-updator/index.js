@@ -31,9 +31,11 @@ dbHelper.startConnection(() => {
             console.log(err);
           } else {
             console.log(data);
-            console.log('Views Sent to Video Service')
+            console.log('Views sent to Video service')
           }
         });
+      } else {
+        console.log('No views to send')
       }
     });
   }, 60000);
