@@ -1,2 +1,5 @@
 node_modules
 data-generator
+aws-config.json
+video-config.json
+docker-env-vars.env

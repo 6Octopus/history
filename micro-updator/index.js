@@ -1,6 +1,6 @@
 const aws = require('aws-sdk');
 const dbHelper = require('./mongoVCAlpha.js');
-const queueUrl = require('./video-config.js').videoServiceQueue;
+const queueUrl = process.env.videoServiceQueue;
 // const winston = require('./winston/view-winston.js'); // needs to be written
 
 // Scan DB for sessions that haven't been updated for 1hr to 1hr 1 min
@@ -8,7 +8,7 @@ const queueUrl = require('./video-config.js').videoServiceQueue;
 
 aws.config.update({
   region: 'us-west-1'
-})
+});
 var sqs = new aws.SQS();
 
 console.log(typeof queueUrl);

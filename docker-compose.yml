@@ -14,6 +14,8 @@ services:
       - "micro-consumer"
     links:
       - "database"
+    env_file:
+      - "docker-env-vars.env"
   database:
     image: mongo:latest
     ports:

@@ -8,16 +8,16 @@ const winston = require('./winston/winston.js');
 // app.use(expressStatsd({ host: 'statsd', port: 8125}));
 
 aws.config.loadFromPath('./aws-config.json');
+aws.config.update({
+  accessKeyId: process.env.accessKeyId,
+  secretAccessKey: process.env.secretAccessKey,
+  region: 'us-west-1'
+});
 
 // Local Fake SQS
 // https://github.com/iain/fake_sqs
 // run 1: fake_sqs
 // run 2: curl http://localhost:4568 -d "Action=CreateQueue&QueueName=history-queue&AWSAccessKeyId=access%20key%20id"
-
-// I can't get this to work, and I don't really care to. So I'm just going to use Amazon SQS
-// Docker Faker SQS
-// https://github.com/feathj/docker-fake-sqs
-// run 1: curl http://localhost:9494 -d "Action=CreateQueue&QueueName=history-queue&AWSAccessKeyId=access%20key%20id"
 
 
 const app = Consumer.create({
