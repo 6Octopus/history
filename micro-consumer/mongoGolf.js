@@ -1,4 +1,4 @@
-const enableConsoleLogs = true;
+const enableSuccessConsoleLogs = false;
 
 const MongoClient = require('mongodb').MongoClient;
 const ObjectId = require('mongodb').ObjectID;
@@ -7,8 +7,8 @@ const moment = require('moment');
 moment().format();
 
 // Connection URL
-const url = 'mongodb://localhost:27017'; // for local env
-// const url = 'mongodb://database'; // for docker env
+// const url = 'mongodb://localhost:27017'; // for local env
+const url = 'mongodb://database'; // for docker env
 
 // Database Name
 const dbName = 'history';
@@ -70,7 +70,9 @@ const incomingView = function(view) {
                     videoID: newView.videoID,
                     isAutoplay: newView.isAutoplay,
                     progress: newView.progress,
-                    totalLength: newView.totalLength
+                    totalLength: newView.totalLength,
+                    occurenceTime: new Date(view.viewTime),
+                    realView: (moment.duration(newView.progress).asSeconds() / moment.duration(newView.totalLength).asSeconds()) >= .8
                   });
                 } else {
                   // console.log(doc);
@@ -80,9 +82,11 @@ const incomingView = function(view) {
                     videoID: newView.videoID,
                     isAutoplay: newView.isAutoplay,
                     progress: newView.progress,
-                    totalLength: newView.totalLength
+                    totalLength: newView.totalLength,
+                    occurenceTime: new Date(view.viewTime),
+                    realView: (moment.duration(newView.progress).asSeconds() / moment.duration(newView.totalLength).asSeconds()) >= .8
                   });
-                  if (enableConsoleLogs) {
+                  if (enableSuccessConsoleLogs) {
                     console.log(`${view.instanceID}: 1 - Updated doc, updated view in array`)
                   }
                 }
@@ -102,7 +106,9 @@ const incomingView = function(view) {
                 videoID: newView.videoID,
                 isAutoplay: newView.isAutoplay,
                 progress: newView.progress,
-                totalLength: newView.totalLength
+                totalLength: newView.totalLength,
+                occurenceTime: new Date(view.viewTime),
+                realView: (moment.duration(newView.progress).asSeconds() / moment.duration(newView.totalLength).asSeconds()) >= .8
               });
             } else {
               // console.log(doc);
@@ -112,9 +118,11 @@ const incomingView = function(view) {
                 videoID: newView.videoID,
                 isAutoplay: newView.isAutoplay,
                 progress: newView.progress,
-                totalLength: newView.totalLength
+                totalLength: newView.totalLength,
+                occurenceTime: new Date(view.viewTime),
+                realView: (moment.duration(newView.progress).asSeconds() / moment.duration(newView.totalLength).asSeconds()) >= .8
               });
-              if (enableConsoleLogs) {
+              if (enableSuccessConsoleLogs) {
                 console.log(`${view.instanceID}: 2 - Updated doc, added view to array`)
               }
             }
@@ -136,7 +144,9 @@ const incomingView = function(view) {
               videoID: newView.videoID,
               isAutoplay: newView.isAutoplay,
               progress: newView.progress,
-              totalLength: newView.totalLength
+              totalLength: newView.totalLength,
+              occurenceTime: new Date(view.viewTime),
+              realView: (moment.duration(newView.progress).asSeconds() / moment.duration(newView.totalLength).asSeconds()) >= .8
             });
           } else {
             // console.log(doc);
@@ -146,9 +156,11 @@ const incomingView = function(view) {
               videoID: newView.videoID,
               isAutoplay: newView.isAutoplay,
               progress: newView.progress,
-              totalLength: newView.totalLength
+              totalLength: newView.totalLength,
+              occurenceTime: new Date(view.viewTime),
+              realView: (moment.duration(newView.progress).asSeconds() / moment.duration(newView.totalLength).asSeconds()) >= .8
             });
-            if (enableConsoleLogs) {
+            if (enableSuccessConsoleLogs) {
               console.log(`${view.instanceID}: 3 - New document/session created`);
             }
           }

@@ -1,11 +1,11 @@
 {
-  "name": "micro-consumer",
+  "name": "micro-updator",
   "version": "1.0.0",
-  "description": "Reads from a queue and writes to a db",
-  "main": "consumer.js",
+  "description": "A timed micro service that sends out information to two other services.",
+  "main": "index.js",
   "scripts": {
-    "start": "node consumer.js",
-    "dev": "nodemon consumer.js",
+    "start": "node index.js",
+    "dev": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "James Terry",

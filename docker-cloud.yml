@@ -1,0 +1,12 @@
+micro-consumer:
+  image: jamesnorthterry/history_micro-consumer
+  links:
+    - "database"
+micro-updator:
+  image: jamesnorthterry/history_micro-updator
+  links:
+    - "database"
+database:
+  image: mongo:latest
+  ports:
+    - "27017:27017"
