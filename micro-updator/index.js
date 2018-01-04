@@ -29,13 +29,13 @@ dbHelper.startConnection(() => {
         sqs.sendMessage(params, function(err, data) {
           if (err) {
             winston.warn({
-              aux: 'view update',
+              type: 5,
               videosUpdated: results.length
             });
             console.log(err);
           } else {
             winston.info({
-              aux: 'view update',
+              type: 5,
               anyUpdates: true,
               videosUpdated: results.length
             });
@@ -44,7 +44,7 @@ dbHelper.startConnection(() => {
         });
       } else {
         winston.info({
-          aux: 'view update',
+          type: 6,
           anyUpdates: false,
           videosUpdated: 0
         });
