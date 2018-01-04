@@ -7,7 +7,7 @@ const winston = require('./winston/winston.js');
 // this is throwing an error, because it is above app
 // app.use(expressStatsd({ host: 'statsd', port: 8125}));
 
-aws.config.loadFromPath('./aws-config.json');
+
 aws.config.update({
   accessKeyId: process.env.accessKeyId,
   secretAccessKey: process.env.secretAccessKey,
@@ -25,13 +25,13 @@ const app = Consumer.create({
   // queueUrl: 'http://sqs/history-queue', // docker
   queueUrl: 'https://sqs.us-west-2.amazonaws.com/737489816178/historyQueue', // aws
   handleMessage: (message, done) => {
-    console.log(JSON.parse(message.Body))
+    // console.log(JSON.parse(message.Body))
 
     var viewArray = JSON.parse(message.Body);
     for (var i = 0; i < viewArray.length; i++) {
       // console.log(typeof JSON.parse(viewArray[i]));
       // console.log(JSON.parse(viewArray[i]));
-      dbHelper.incomingView(JSON.parse(viewArray[i]));
+      dbHelper.incomingView(viewArray[i]);
     }
     done();
   },

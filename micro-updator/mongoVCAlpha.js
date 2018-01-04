@@ -2,7 +2,7 @@ const enableSuccessConsoleLogs = false;
 
 const MongoClient = require('mongodb').MongoClient;
 const ObjectId = require('mongodb').ObjectID;
-// const winston = require('./winston/view-winston.js'); // needs to be written
+const winston = require('./winston/winston.js');
 const moment = require('moment');
 moment().format();
 

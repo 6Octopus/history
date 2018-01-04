@@ -7,6 +7,8 @@ services:
       - "database"
     links:
       - "database"
+    env_file:
+      - "./docker-env-vars.env"
   micro-updator:
     build: micro-updator/
     depends_on:
@@ -15,7 +17,7 @@ services:
     links:
       - "database"
     env_file:
-      - "docker-env-vars.env"
+      - "./docker-env-vars.env"
   database:
     image: mongo:latest
     ports:

@@ -42,7 +42,7 @@ var viewQueue = [];
 
 var sendViews = function(viewData) {
   successCount += 1;
-  viewQueue.push(viewData);
+  viewQueue.push(JSON.parse(viewData));
   if (viewQueue.length >= 500 || viewQueue.length >= reqPerSec) {
     var params = {
       MessageBody: JSON.stringify(viewQueue),

@@ -42,3 +42,4 @@ aws-config.json
 elastic-config.json
 video-config.js
 docker-env-vars.env
+docker-cloud-prive.yml
